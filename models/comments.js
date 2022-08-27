@@ -3,17 +3,12 @@ const sequelize = require('../config/connection');
 
 class Comment extends Model {}
 
-Project.init(
+Comment.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     comment_text: {
       type: DataTypes.STRING,
