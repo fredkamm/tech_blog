@@ -1,6 +1,24 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+router.get('/', async (req, res) => {
+  // find all users
+  try {
+    const userData = await User.findAll({
+      attributes: { 
+        exclude: ['[password'] 
+      }
+  });
+    if (!userData) {
+      res.status(404).json({ message: 'No category with this id!' });
+      return;
+    }
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -23,7 +41,7 @@ router.post('/login', async (req, res) => {
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect name or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
@@ -32,7 +50,7 @@ router.post('/login', async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect name or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
@@ -52,6 +70,7 @@ router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
+      res.json({ user: userData, message: 'You are now logged out!' });
     });
   } else {
     res.status(404).end();

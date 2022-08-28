@@ -2,6 +2,21 @@ const router = require('express').Router();
 const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+router.get('/', async (req, res) => {
+  // find all users
+  try {
+    const postData = await Post.findAll({});
+    if (!postData) {
+      res.status(404).json({ message: 'No category with this id!' });
+      return;
+    }
+    res.status(200).json(postData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 router.post('/', withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({
