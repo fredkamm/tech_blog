@@ -12,20 +12,15 @@ html {
 header {
   background-color: var(--primary);
   color: var(--secondary);
+  padding-top: 1%;
 }
 
 body {
   background-color: var(--secondary);
-  margin: 0 auto;
+  margin: 0;
 }
 
-.nav-link {
-  color: var(--secondary);
-  font-size: 25px;
-  padding-left: 3%;
-  text-decoration: none;
-}
-
+  /* css for the main handlerbar*/
 .home-link {
   display: inline-block;
   color: var(--primary);
@@ -54,6 +49,13 @@ body {
   box-shadow: 6px 5px var(--secondary);
 }
 
+.nav-link {
+  color: var(--secondary);
+  font-size: 25px;
+  padding-left: 3%;
+  text-decoration: none;
+}
+
 .nav-link:hover {
   color: var(--secondary);
   font-size: 30px;
@@ -65,3 +67,15 @@ main {
   display: block;
 }
 
+h2 {
+  background-color: var(--primary);
+  color: var(--secondary);
+  margin: 0 20%;
+}
+
+form {
+  display: block;
+  border: black solid 1px;
+  margin: 0 20%;
+  padding: 1%;
+}
