@@ -1,24 +1,67 @@
-header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
+:root {
+  --primary: #563b3b;
+  --secondary: #dbf8db;
+  --shadow: #ffffff;
 }
 
-.no-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: #1b89bc;
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+header {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+body {
+  background-color: var(--secondary);
+  margin: 0 auto;
+}
+
+.nav-link {
+  color: var(--secondary);
+  font-size: 25px;
+  padding-left: 3%;
   text-decoration: none;
-  font-size: 100%;
 }
 
-.no-button:hover {
-  color: #065b83;
+.home-link {
+  display: inline-block;
+  color: var(--primary);
+  font-size: 35px;
+  padding: .5%;
+  margin-left: 3%;
+  margin-bottom: 3%;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: var(--secondary);
+  border-radius: .3rem;
+  box-shadow: 6px 5px var(--shadow);
+}
+
+.home-link:hover {
+  display: inline-block;
+  color: var(--shadow);
+  font-size: 38px;
+  padding: .5%;
+  margin-left: 3%;
+  margin-bottom: 3%;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: var(--primary);
+  border-radius: .3rem;
+  box-shadow: 6px 5px var(--secondary);
+}
+
+.nav-link:hover {
+  color: var(--secondary);
+  font-size: 30px;
+  padding-left: 3%;
   text-decoration: underline;
 }
 
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
+main {
+  display: block;
 }
+
