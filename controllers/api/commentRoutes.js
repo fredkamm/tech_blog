@@ -2,6 +2,20 @@ const router = require('express').Router();
 const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+router.get('/', async (req, res) => {
+  // find all users
+  try {
+    const commentData = await Comment.findAll({});
+    if (!commentData) {
+      res.status(404).json({ message: 'No category with this id!' });
+      return;
+    }
+    res.status(200).json(commentData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.post('/', withAuth, async (req, res) => {
   try {
     const newComment = await Comment.create({
