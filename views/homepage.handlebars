@@ -1,5 +1,7 @@
 <article class="post">
 
-    <p>this is the home page</p>
+    {{#each post as |post| }}
+        {{> post-details}}
+    {{/each}}
 
 </article>
