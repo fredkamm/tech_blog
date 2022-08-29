@@ -12,7 +12,7 @@ const loginFormHandler = async (event) => {
       body: JSON.stringify({ name, password }),
       headers: { 'Content-Type': 'application/json' },
     });
-
+    console.log(response);
     if (response.ok) {
       // If successful, redirect the browser to the profile page
       document.location.replace('/dashboard');
@@ -22,6 +22,6 @@ const loginFormHandler = async (event) => {
   }
 };
 
-document.querySelector('.btn').addEventListener('submit', loginFormHandler);
+document.querySelector('#login-form').addEventListener('submit', loginFormHandler);
 
 
