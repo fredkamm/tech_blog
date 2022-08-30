@@ -26,27 +26,27 @@ router.get('/', async (req, res) => {
   }
 });
 
-// router.get('/post/:id', withAuth, async (req, res) => {
-//   try {
-//     const postData = await Post.findByPk(req.params.id, {
-//       attributes: ['id', 'title', 'post_text'],
-//       include: 
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//     });
+router.get('/post/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      attributes: ['id', 'title', 'post_text'],
+      include: 
+        {
+          model: User,
+          attributes: ['name'],
+        },
+    });
 
-//     const post = postData.get({ plain: true });
+    const post = postData.get({ plain: true });
 
-//     res.render('one-post', {
-//       ...post,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.render('one-post', {
+      ...post,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
