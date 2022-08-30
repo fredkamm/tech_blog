@@ -20,6 +20,9 @@ body {
   margin: 0;
 }
 
+div {
+  margin-top: 1%;
+}
   /* css for the main handlerbar*/
 .home-link {
   display: inline-block;
@@ -62,6 +65,7 @@ body {
   padding-left: 3%;
   text-decoration: underline;
 }
+/* above is the nav bar  */
 
 main {
   display: block;
@@ -82,4 +86,9 @@ form {
 
 p {
   color: black;
+  display: block;
+  border: black solid 1px;
+  margin: 0% 20% 1% 20%;
+  padding: 1%;
 }
+

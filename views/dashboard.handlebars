@@ -8,6 +8,20 @@
 </section>
 {{/if}}
 
-<button type="submit" class="btn"><a class="link" href="/dashboard/new">+ New Post</a></button>
+{{!-- this will load of the new post form in the dashboard --}}
 
-<script src="./js/newPost.js"></script>
+<div id="CreatePost" class="card">
+    <h2 class="card-header">Create New Post</h2>
+    <form class="card-body new-post-form" id="new-post-form">
+        <label for="post-title" class="form-label">Title</label>
+        <input class="form-input" type="text" id="post-title" name="post-title" />
+
+
+        <label class="form-label" for="content">Text</label>
+        <input class="form-input" id="post_text" name="text" />
+
+        <button type="submit" class="btn">Create</button>
+    </form>
+</div>
+
+<script src="/js/newPost.js"></script>

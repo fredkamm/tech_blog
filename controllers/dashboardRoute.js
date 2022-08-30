@@ -6,19 +6,10 @@ router.get('/', withAuth, async (req, res) => {
   try {
     // Get all post and JOIN with user data
     const postData = await Post.findAll(req.body,{
-      include: [{
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-            model: User,
-            attributes: ['name']
-        }
-    },
-    {
-        model: User,
-        attributes: ['name']
-    }
-      ],
+      attributes: ['id', 'title', 'post_text'],
+      where: {
+        user_id: req.session.user_id
+      }
     });
 
     // Serialize data so the template can read it
@@ -34,9 +25,6 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/new', (req, res) => {
-  res.render('new-post');
-});
 
 router.get('/post/:id', async (req, res) => {
   try {

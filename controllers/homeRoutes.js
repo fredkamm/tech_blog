@@ -6,20 +6,12 @@ router.get('/', async (req, res) => {
   try {
     // Get all posts and JOIN with user data
     const postData = await Post.findAll({
-      include: [
+      attributes: ['id', 'title', 'post_text'],
+      include: 
         {
           model: User,
           attributes: ['name'],
         },
-        {
-          model: Comment,
-          attributes: ['id', 'comment_text', 'post_id', 'user_id'],
-            include: {
-              model: User,
-              attributes: ['name'],
-            }
-        }
-      ],
     });
     // Serialize data so the template can read it
     const post = postData.map((post) => post.get({ plain: true }));
@@ -34,42 +26,15 @@ router.get('/', async (req, res) => {
   }
 });
 
-
-// // Use withAuth middleware to prevent access to route
-// router.get('/profile', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Post }],
-//     });
-
-//     const user = userData.get({ plain: true });
-
-//     res.render('profile', {
-//       ...user,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-
-
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
-      include: [
+      attributes: ['id', 'title', 'post_text'],
+      include: 
         {
           model: User,
           attributes: ['name'],
         },
-        {
-          model: Comment,
-          attributes: ['id', 'comment_text', 'post_id', 'user_id'],
-        },
-      ],
     });
 
     const post = postData.get({ plain: true });
